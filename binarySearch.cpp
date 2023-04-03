@@ -5,8 +5,9 @@ int binarySearch(int arr[],int size ,int key){
 int start=0;
 int end=size-1;
 
-int mid=(start+end)/2;
-
+                                   //when both start & end are large integers
+int mid=start + (end-start)/2;     //(start+end)/2  sumup of start & end gives value out of int scope 
+                                   
 while(start<=end){
 
     if(arr[mid]==key){
@@ -20,8 +21,8 @@ while(start<=end){
     else{
         end=mid-1;
     }
-    
-    mid=(start+end)/2;
+
+    mid=start + (end-start)/2;
 }
 
     return -1;
