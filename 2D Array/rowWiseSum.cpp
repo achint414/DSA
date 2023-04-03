@@ -7,12 +7,12 @@ void rowSum(int arr[][3],int row,int col){
         for(int j=0;j<col;j++){
             sum+=arr[i][j];
         } 
-        cout<<"sum of "<<i+1<<" row: "<<sum<<endl;
+        cout<<"sum of "<<(i+1)<<" row: "<<sum<<endl;
    }
 }
 
 int main(){
-    
+
 int arr[3][3];
 for (int i=0;i<3;i++)
 {
@@ -20,7 +20,6 @@ for (int i=0;i<3;i++)
     {
         cin>>arr[i][j];
     }
-    
 }
 rowSum(arr,3,3);
 
