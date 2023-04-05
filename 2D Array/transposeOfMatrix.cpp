@@ -7,7 +7,7 @@ int temp=0;
 for(int i=0;i<N;i++){
     for(int j=i;j<N;j++){
         temp=arr[i][j];
-        arr[i][j]=arr[j][i];
+        arr[i][j]=arr[j][i];                      //or use swap() function 
         arr[j][i]=temp;
     }
 
