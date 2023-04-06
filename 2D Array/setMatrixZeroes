@@ -1,0 +1,113 @@
+//BRUTE FORCE APPROACH
+
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row=matrix.size();
+        int col=matrix[0].size();
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j]==0){
+
+                    //markRow
+                for(int c=0;c<col;c++){
+                    if(matrix[i][c]!=0)
+                    matrix[i][c]=-10;
+                }
+
+                    //markCol
+                for(int r=0;r<row;r++){
+                    if(matrix[r][j]!=0)
+                    matrix[r][j]=-10;
+                }
+
+                }
+            }
+        }
+
+     for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j]==-10){
+                    matrix[i][j]=0;
+                }
+        }
+     }
+
+    }
+};
+
+
+
+//BETTER APPROACH
+
+
+int row=matrix.size();  int col=matrix[0].size();
+	int Row[row]={0}; int Col[col]={0};
+
+	for(int i=0;i<row;i++){
+		for(int j=0;j<col;j++){
+			if(matrix[i][j]==0){
+				Row[i]=1;
+				Col[j]=1;
+			}
+		}
+	}
+
+	for(int i=0;i<row;i++){
+          for (int j = 0; j < col; j++) {
+			  if(Row[i]||Col[j])
+			  matrix[i][j]=0;
+          }
+        }
+
+
+//OPTIMAL APPROACH
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+	int row=matrix.size();  int col=matrix[0].size();
+	 int col0=1;
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+
+                if(matrix[i][j]==0){
+                    //mark the ith row
+                    matrix[i][0]=0;
+                    //mark the jth col
+                    if(j!=0){
+                        matrix[0][j]=0;
+                    }
+                    else col0=0;
+                }
+            }
+        }
+
+    for(int i=1;i<row;i++){
+            for(int j=1;j<col;j++){
+                if(matrix[i][j]!=0){
+                    //check for row and col
+                     if(matrix[i][0]==0||matrix[0][j]==0){  
+                    matrix[i][j]=0;  
+                }
+                }
+            }
+        }
+
+    if(matrix[0][0]==0){
+        for(int j=0;j<col;j++) matrix[0][j]=0;
+    }
+    if(col0==0){
+        for(int i=0;i<row;i++) matrix[i][0]=0;
+        }
+    }
+    
+};
+
+
+
+
+
