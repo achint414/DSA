@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n= prices.size();
+
+        int profit=0;
+        int minBuy=prices[0];
+        for(int i=1;i<n;i++){        //cannot sell on the same day
+            int diff=prices[i]-minBuy;
+            profit=max(profit,diff);
+            minBuy=min(minBuy,prices[i]);
+        }
+        return profit;
+    }
+};
