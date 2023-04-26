@@ -1,4 +1,4 @@
-//Optimal
+//Optimal(for both postive and negative elments in arr)
 
 #include <bits/stdc++.h> 
 int getLongestSubarray(vector<int>& nums, int k){
