@@ -1,0 +1,39 @@
+//iterative
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* next;
+
+        while(curr!=NULL){
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+        return head;
+    }
+};
+
+//recursive
+
+ListNode* reverse(ListNode* &head){                         //return head of reverse ll
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+ 
+    ListNode* revHead=reverse(head->next);
+    head->next->next=head;
+    head->next=NULL;
+    return revHead;
+}
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+      return reverse(head);
+    }
+};
