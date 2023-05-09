@@ -1,4 +1,4 @@
-//iterative
+//iterative               O(N)  O(1)
 
 class Solution {
 public:
@@ -6,7 +6,11 @@ public:
         ListNode* prev=NULL;
         ListNode* curr=head;
         ListNode* next;
-
+        
+        if(head==NULL || head->next==NULL){
+        return head;
+    } 
+    
         while(curr!=NULL){
             next=curr->next;
             curr->next=prev;
@@ -18,12 +22,12 @@ public:
     }
 };
 
-//recursive
+//recursive                O(N)  O(1)
 
 ListNode* reverse(ListNode* &head){                         //return head of reverse ll
     if(head==NULL || head->next==NULL){
         return head;
-    }
+    }   
  
     ListNode* revHead=reverse(head->next);
     head->next->next=head;
