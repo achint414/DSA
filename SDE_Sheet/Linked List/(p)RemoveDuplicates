@@ -1,4 +1,4 @@
-//sorted
+//sorted     O(n)    O(1)
 
 Node * uniqueSortedList(Node * head) {
     if(head==NULL){
