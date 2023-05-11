@@ -1,0 +1,88 @@
+//Brute       O(n)   O(1)
+
+Node* sortList(Node *head)
+{
+    if(head==NULL){
+        return NULL;
+    }
+
+    int c0=0;                                        //count no of 0 1 & 2 in list 
+    int c1=0;
+    int c2=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->data==0)c0++;
+        if(temp->data==1)c1++;
+        else c2++;
+        temp=temp->next;    
+    }
+
+    temp=head;
+    while(temp!=NULL){                            //replace the list first 0 then 1 then 2
+        if(c0>0){
+           temp->data=0;
+           c0--;
+       }
+        else if(c1>0){
+           temp->data=1;
+           c1--;
+       }
+        else if(c2>0){
+           temp->data=2;
+           c2--;
+       }
+       temp=temp->next;
+    }
+return head;
+}
+
+
+//if data replacement is not allowed                   O(n)    O(1)
+
+void InsertTail(Node* &tail, Node* curr){
+    tail->next=curr;
+    tail=curr;
+}
+
+Node* sortList(Node *head)
+{                               
+    Node* zeroHead=new Node(-1);  Node* zeroTail=zeroHead;        //create 3 seperate lists
+    Node* oneHead=new Node(-1);   Node* oneTail=oneHead;
+    Node* twoHead=new Node(-1);   Node* twoTail=twoHead;
+    
+    Node* curr=head;
+
+    while (curr!=NULL) {
+        int val=curr->data;
+
+        if(val==0){                                               //insert 0 1 2 in the 3 lists at tails
+            InsertTail(zeroTail,curr);
+        }
+        else if(val==1){
+            InsertTail(oneTail,curr);
+        }
+        else if(val==2){
+            InsertTail(twoTail,curr);
+        }
+        curr=curr->next;
+    }
+    
+    //merge the 3 lists 
+    if(oneHead->next!=NULL){                                  
+        zeroTail->next=oneHead->next;                                 
+        oneTail->next=twoHead->next;
+    }
+    else{
+        zeroTail->next=twoHead->next;                              //1's list is empty
+    }
+    twoTail->next=NULL;
+
+    head=zeroHead->next;                          //set head before deleting nodes
+
+    delete zeroHead;                              //delete dummy nodes
+    delete oneHead;
+    delete twoHead;
+
+    return head;
+}
+

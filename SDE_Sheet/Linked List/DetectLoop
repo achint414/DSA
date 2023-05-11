@@ -73,7 +73,7 @@ while(slow!=intersection)
 StartOfLoop=slow;  //Loop start
 if(StartOfLoop==NULL){
     return head;
-} 
+}   
 
 Node* temp=slow;
 while(temp->next!=slow){
