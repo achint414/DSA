@@ -20,7 +20,7 @@ public:
     }
 };
 
-// floyd cycle detection algo     hare-tortoise     2ptr            O(n)  O(1)
+// floyd cycle detection algo     hare-tortoise   2ptr        O(n)  O(1)
                                               
 class Solution {
 public:
@@ -48,3 +48,83 @@ public:
         return false;
     }
 };
+
+
+
+//to find the starting node of the loop
+//slow and fast intersects
+
+//intersection=fast
+if(intersection == NULL){
+    return head;
+}
+
+slow=head;
+while(slow!=intersection)   
+    {
+       slow=slow->next;
+       intersection=intersection->next     //fast=fast->next; 
+    }
+    return slow;  
+
+//remove loop
+//require the starting node
+
+StartOfLoop=slow;  //Loop start
+if(StartOfLoop==NULL){
+    return head;
+} 
+
+Node* temp=slow;
+while(temp->next!=slow){
+    temp=temp->next;  
+}
+temp->next=NULL;
+
+
+//
+
+Node* checkLoop(Node* head){
+    if(head==NULL)return NULL;
+
+    if(head->next==NULL){
+        if(head->next==head)return head;
+        else return NULL;
+    }
+    
+    Node* slow=head;
+    Node* fast=head;
+    while(slow!=NULL && fast!=NULL && fast->next!=NULL){
+        fast=fast->next->next;
+        slow=slow->next;
+        if(slow==fast){
+            return slow;
+        }
+    }
+    return NULL;
+}
+
+Node* startLoop(Node* head,Node* ans){
+    Node* slow=head;
+    Node* fast=ans;
+    while(slow!=fast){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    return slow;
+}
+
+Node *removeLoop(Node *head)
+{
+    Node* ans=checkLoop(head);
+    if(ans==NULL)return head;
+    else{
+        Node* start=startLoop(head,ans);
+        Node* temp=start;
+        while(temp->next!=start){
+            temp=temp->next;
+        }
+        temp->next=NULL;
+        return head;
+    }
+}
