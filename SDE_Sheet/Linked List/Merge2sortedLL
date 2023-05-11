@@ -1,29 +1,39 @@
 Node<int>* mergeList(Node<int>* &first,Node<int>* &second){
+    
 
     Node<int>* curr1=first;
     Node<int>* next1=first->next;
     Node<int>* curr2=second;
     Node<int>* next2=second->next;
-
+    
+    //edge case - if first list have only one node, point its next to entire second list
     if(first->next==NULL){
         first->next=second;
         return first;
     }
     
-    while(next1!=NULL && curr2!=NULL){
+    //curr1 is not at end node of list 1 & curr2 not at NULL
+    while(next1!=NULL && curr2!=NULL){             
 
-        if((curr2->data >= curr1->data) && (curr2->data <= next1->data)){
-
+        if((curr2->data >= curr1->data) 
+            && (curr2->data <= next1->data)){
+            
+            //add node in between the nodes of first list
             curr1->next=curr2;
             next2=curr2->next;
             curr2->next=next1;
+            
+            //update the ptrs
             curr1=curr2;
             curr2=next2;
         }
+
         else{
+            //if doest lies in between the nodes of list 1, go one step ahead in first list
             curr1=next1;
             next1=next1->next;
-
+            
+            //make sure next part didnt reach null -> list 1 ends
             if(next1==NULL){
                 curr1->next=curr2;
                 return first;
@@ -35,9 +45,11 @@ Node<int>* mergeList(Node<int>* &first,Node<int>* &second){
 
 Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
 {
-    if(first==NULL)return second;
+    //if first or last is empty return the other
+    if(first==NULL)return second;                        
     if(second==NULL)return first;
-
+    
+    //find the list with smaller data of first node
     if(first->data < second->data){
         return mergeList(first,second);
     }
