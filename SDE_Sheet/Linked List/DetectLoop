@@ -1,0 +1,50 @@
+//using map     O(n)  O(n)
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+    if(head==NULL){
+        return false;
+    }
+    
+    map<ListNode* ,bool>visited;
+    ListNode* temp=head;
+    while(temp!=NULL){
+          if(visited[temp]==true){
+              return true;
+          }
+          visited[temp]=true;
+          temp=temp->next;
+    }
+    return false;
+    }
+};
+
+// floyd cycle detection algo     hare-tortoise     2ptr            O(n)  O(1)
+                                              
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head==NULL){
+            return false;
+        }
+        if(head->next==NULL){
+            if(head->next==head)return true;
+            else return false;
+        }
+        
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(slow!=NULL && fast!=NULL){
+            fast=fast->next;
+            if(fast!=NULL){
+                fast=fast->next;
+            }
+            slow=slow->next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+};
