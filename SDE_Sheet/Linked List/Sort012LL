@@ -5,8 +5,8 @@ Node* sortList(Node *head)
     if(head==NULL){
         return NULL;
     }
-
-    int c0=0;                                        //count no of 0 1 & 2 in list 
+    //count no of 0 1 & 2 in list 
+    int c0=0;                                        
     int c1=0;
     int c2=0;
     Node* temp=head;
@@ -18,7 +18,9 @@ Node* sortList(Node *head)
     }
 
     temp=head;
-    while(temp!=NULL){                            //replace the list first 0 then 1 then 2
+    while(temp!=NULL){
+
+        //replace the list first 0 then 1 then 2                            
         if(c0>0){
            temp->data=0;
            c0--;
@@ -45,8 +47,9 @@ void InsertTail(Node* &tail, Node* curr){
 }
 
 Node* sortList(Node *head)
-{                               
-    Node* zeroHead=new Node(-1);  Node* zeroTail=zeroHead;        //create 3 seperate lists
+{                
+    //create 3 seperate lists               
+    Node* zeroHead=new Node(-1);  Node* zeroTail=zeroHead;        
     Node* oneHead=new Node(-1);   Node* oneTail=oneHead;
     Node* twoHead=new Node(-1);   Node* twoTail=twoHead;
     
@@ -55,7 +58,8 @@ Node* sortList(Node *head)
     while (curr!=NULL) {
         int val=curr->data;
 
-        if(val==0){                                               //insert 0 1 2 in the 3 lists at tails
+        //insert 0 1 2 in the 3 lists at tails
+        if(val==0){                                               
             InsertTail(zeroTail,curr);
         }
         else if(val==1){
@@ -72,14 +76,18 @@ Node* sortList(Node *head)
         zeroTail->next=oneHead->next;                                 
         oneTail->next=twoHead->next;
     }
+
     else{
-        zeroTail->next=twoHead->next;                              //1's list is empty
+        //1's list is empty
+        zeroTail->next=twoHead->next;                             
     }
     twoTail->next=NULL;
-
-    head=zeroHead->next;                          //set head before deleting nodes
-
-    delete zeroHead;                              //delete dummy nodes
+    
+    //set head before deleting nodes
+    head=zeroHead->next;                          
+    
+    //delete dummy nodes
+    delete zeroHead;                             
     delete oneHead;
     delete twoHead;
 
