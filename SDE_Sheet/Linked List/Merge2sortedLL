@@ -1,6 +1,5 @@
 Node<int>* mergeList(Node<int>* &first,Node<int>* &second){
     
-
     Node<int>* curr1=first;
     Node<int>* next1=first->next;
     Node<int>* curr2=second;
@@ -51,8 +50,10 @@ Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
     
     //find the list with smaller data of first node
     if(first->data < second->data){
+
         return mergeList(first,second);
     }
+
     else{
         return mergeList(second,first);
     }
