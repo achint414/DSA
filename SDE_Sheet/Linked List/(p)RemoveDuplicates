@@ -19,4 +19,55 @@ Node * uniqueSortedList(Node * head) {
 
 //unsorted
 
+//brute(using 2 ptrs)      O(n^2) O(1)
+ Node * removeDuplicates( Node *head) 
+    {
+        if (head == NULL)
+        return NULL;
 
+    Node* curr = head;
+    while (curr != NULL){
+        
+        Node* temp= curr;
+        while (temp->next != NULL){
+            
+            if(temp->next->data == curr->data) {
+                // Remove the duplicate node
+                Node* duplicate = temp->next;
+                temp->next = temp->next->next;
+                delete duplicate;
+            } 
+            else {
+                temp = temp->next;
+            }
+        }
+        curr = curr->next;
+    }
+    return head;
+  }
+  
+//(optimal)using set            O(n) O(n)
+ Node * removeDuplicates( Node *head) 
+    {
+        set<int>st;
+        Node* curr=head;
+        Node* prev=NULL;
+        
+        while(curr!=NULL){
+            
+            if(st.find(curr->data)==st.end()){
+                
+                st.insert(curr->data);
+                prev=curr;
+            }
+            
+            else{
+                prev->next=curr->next;
+                delete curr;
+            }
+            
+            curr=prev->next;
+        }
+        
+        return head;
+  }
