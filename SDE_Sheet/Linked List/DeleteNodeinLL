@@ -1,6 +1,13 @@
-//Node Next
-//copy the value and address of the next node of the NODE to be deleted
+// O(1) O(1)
+//copy the value and address of the next NODE of the node to be deleted
 void deleteNode(ListNode* node) {
         node->val=node->next->val;
         node->next=node->next->next;
+        return;
     }
+
+//if node is at the tail
+if(node->next==NULL){
+    node=NULL;
+}
+ 
