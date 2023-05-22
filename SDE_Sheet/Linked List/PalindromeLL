@@ -1,0 +1,54 @@
+//using extra ds        O(N)    O(N)
+
+bool isPalindrome(node* head) {
+    vector<int> arr;
+    while(head != NULL) {
+        arr.push_back(head->num);
+        head = head->next;
+    }
+    int n=arr.size();
+    for(int i=0;i<n/2;i++) 
+        if(arr[i] != arr[n-i-1]) return false;
+    return true;
+}
+
+//optimised         O(N/2)+O(N/2)+O(N/2)     O(1)
+
+ListNode* reverse(ListNode* ptr){
+    ListNode* prev=NULL;
+    ListNode* next=NULL;
+    while(ptr!=NULL){
+        next=ptr->next;
+        ptr->next=prev;
+        prev=ptr;
+        ptr=next;
+    }
+    return pre;
+}
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        
+        if(head==NULL || head->next==NULL)return true;
+
+        ListNode* slow=head;
+        ListNode* fast=head;
+
+        while(fast->next && fast->next->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+
+        slow->next=reverse(slow->next);
+        slow=slow->next;
+        ListNode* temp=head;
+
+        while(slow!=NULL){
+            if(temp->val!=slow->val)return false;
+            temp=temp->next;
+            slow=slow->next;
+        }
+        return true;
+    }
+};
