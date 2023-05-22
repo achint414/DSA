@@ -1,7 +1,6 @@
+//Node Next
 //copy the value and address of the next node of the NODE to be deleted
-
 void deleteNode(ListNode* node) {
-    ListNode* temp=node->next;
-    node->val=temp->val;
-    node->next=temp->next;
-}
+        node->val=node->next->val;
+        node->next=node->next->next;
+    }
