@@ -44,7 +44,7 @@ Node<int>* mergeList(Node<int>* &first,Node<int>* &second){
 
 Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
 {
-    //if first or last is empty return the other
+    //if first or second is empty return the other
     if(first==NULL)return second;                        
     if(second==NULL)return first;
     

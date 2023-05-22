@@ -1,4 +1,4 @@
-//Brute (traversal)                    O(2N)   O(1)
+//brute (traversal)                    O(2N)   O(1)
 
 int CountNode(Node* head){
     
