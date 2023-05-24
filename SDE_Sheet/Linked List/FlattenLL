@@ -1,4 +1,4 @@
-//
+//O(N)   O(1)
 Node* merge(Node* a,Node* b){
     
     Node* temp=new Node(0);
@@ -28,9 +28,10 @@ Node* merge(Node* a,Node* b){
 
 Node *flatten(Node *root)
 {
-   if(root==NULL || root->next==NULL){
+   if(root==NULL || root->next==NULL){      //edge case
        return root;
    }
+   
     //recursion for list on right 
     root->next=flatten(root->next);
 
