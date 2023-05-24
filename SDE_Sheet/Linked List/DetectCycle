@@ -87,7 +87,7 @@ while(temp->next!=slow){
 temp->next=NULL;
 
 
-//
+//remove loop
 
 Node* checkLoop(Node* head){
     if(head==NULL)return NULL;

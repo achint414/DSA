@@ -1,0 +1,58 @@
+//brute             O(n * m)     O(1)
+// Keep any one of the list to check its node present in the other list.(second list)
+// Iterate through the other list(first one)
+// Check if the both nodes are the same.
+// If not, continue iteration.
+// If we did not find and completed the entire iteration of the second list, return null.
+node* intersectionPresent(node* head1,node* head2) {
+    while(head2 != NULL) {
+        node* temp = head1;
+        while(temp != NULL) {
+            //if both nodes are same
+            if(temp == head2) return head2;
+            temp = temp->next;
+        }
+        head2 = head2->next;
+    }
+    return NULL;
+}
+
+
+//hashing(set or map)            O(n+m)    O(n)
+
+ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        unordered_set<ListNode*>set;
+
+        ListNode* temp=headA;
+        while(temp!=NULL){
+            set.insert(temp);
+            temp=temp->next;
+        }
+        
+        temp=headB;
+        while(temp!=NULL){
+            if(set.find(temp)!=set.end())return temp;
+            temp=temp->next;
+        }
+        return NULL;
+    }
+
+
+//optimised        difference in height->reduce the search length
+
+//Take two dummy nodes for each list. Point each to the head of the lists.
+//Iterate over them. If anyone becomes null, point them to the head of the opposite lists 
+//and continue iterating until they collide.
+
+
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode* a=headA;
+    ListNode* b=headB;
+    while(a!=b){
+        a = (a==NULL) ? headB : a->next;
+        b = (b==NULL) ? headA : b->next;
+    }
+    return a;
+}
+
+//      O(2*max(length of list1,length of list2))       O(1)
