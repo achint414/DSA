@@ -1,0 +1,50 @@
+//brute        O(N x K)      O(1)        
+ ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        for(int i=0;i<k;i++){
+            ListNode* temp=head;
+            //last second node
+            while(temp->next->next!=NULL)temp=temp->next;
+            ListNode* tail=temp->next;
+            //point last second node to NULL & tail to head
+            temp->next=NULL;
+            tail->next=head;
+            head=tail;
+        }
+    return head;
+}
+//  if TLE (k>=len) => k=k % len;
+
+//optimal   O(N) + O(N-(N % k)) -> O(N)     O(1)
+ ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL || head->next==NULL ||k==0){
+            return head;           
+        }
+
+        //count nodes
+        ListNode* cur=head;
+        int len=1;
+        while(cur->next!=NULL){
+            len++;
+            cur=cur->next;
+        }   
+
+        //link last node(cur) to first node
+        cur->next=head; 
+        //when k is more than length of list
+        k=k % len;
+        //to get to the end of the list
+        k=len - k;
+
+        //breaking last node link and pointing to NULL
+        while(k--){
+            cur=cur->next;
+        }
+        head=cur->next;
+        cur->next=NULL;
+
+        return head;
+    }
+
