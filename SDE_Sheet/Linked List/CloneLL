@@ -1,0 +1,20 @@
+//brute (hashing)
+Node* copyRandomList(Node* head) {
+        unordered_map<Node*, Node*>map;
+
+        Node* temp=head;
+        while(temp!=NULL){
+            Node* newNode=new Node(temp->val);
+            map[temp]=newNode;
+            temp=temp->next;
+        }
+
+        temp=head;
+        while(temp!=NULL){
+            Node* node=map[temp];
+            node->next = (temp->next!=NULL) ? map[temp->next] : NULL ;
+            node->random = (temp->random!=NULL) ? map[temp->random] : NULL ;
+            temp=temp->next;
+        }
+    return map[head];
+}
