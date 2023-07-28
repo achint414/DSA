@@ -1,0 +1,41 @@
+//O(N^2) O(1)
+//decide the middle index for a palindromic string
+//traverse the string, consider each index as the middle point of the palindromic string
+
+string longestPalindrome(string s) {
+        
+        int n = s.length();
+        int index = 0,  maxL = 1;
+
+        for(int i=1; i<n; i++){
+            //even case
+            int left = i-1;
+            int right = i;
+            while(left >= 0 && right < n && s[left] == s[right]){
+                if(right-left+1 > maxL){
+                    maxL = right-left+1;
+                    index = left;
+                }
+                left--;
+                right++;
+            }
+
+            //odd case
+            left = i-1;
+            right = i+1;
+            while(left >= 0 && right < n && s[left] == s[right]){
+                if(right-left+1 > maxL){
+                    maxL = right-left+1;
+                    index = left;
+                }
+                left--;
+                right++;
+            }
+        }
+
+        string ans="";
+        for(int i=index; i < index + maxL; i++){
+            ans+=s[i];
+        }
+        return ans;
+    }
