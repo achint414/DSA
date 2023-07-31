@@ -1,0 +1,74 @@
+//using stack O(N) O(N)
+class Solution {
+public:
+    string reverseWords(string str) {
+        
+				stack<string> st;
+				string word = "";
+
+				for(int i=0; i<str.length(); i++){
+						if(str[i]!=' '){
+							word+=str[i];
+						}
+						else{
+							if(word!="")
+							st.push(word);
+							word="";
+						}
+				}
+                //to push remaining last word
+				if(word!=""){
+					st.push(word);
+				}
+
+				string ans="";
+				while(!st.empty()){
+					ans+=(st.top() + ' ');
+					st.pop();
+				}
+                //remove extra space at end
+				ans.pop_back();
+
+				return ans;
+    }
+};
+
+//O(N) O(1)
+class Solution {
+public:
+    string reverseWords(string s) {
+    
+    int left = 0;
+    int right = s.length()-1;
+    
+    string word="";
+    string ans="";
+    
+    //Iterate the string and keep on adding to form a word
+    //If empty space is encountered then add the current word to the result
+    while (left <= right) {
+        char ch= s[left];
+
+        if (ch != ' ') {
+            word += ch;
+        }
+		else if (ch == ' ') {
+            if (word!="") 
+				ans = word + " " + ans;
+        
+            word = "";
+        }
+        left++;
+    }
+    //If not empty string then add to the result(Last word is added)
+    if (word!="") {
+        ans = word + " " + ans;
+        
+    }
+    //remove last extra space
+	if(ans[ans.length()-1]==' ')
+    ans.pop_back();
+
+    return ans; 
+    }
+};

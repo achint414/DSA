@@ -1,0 +1,45 @@
+//O(N*N) O(1)  TLE
+int equilibriumPoint(long long a[], int n) {
+        
+        if(n==1)return 1;
+        
+        for(int i=1; i<n; i++){
+            int lSum=0;
+            for(int j=i-1; j>=0; j--){
+                lSum+=a[j];
+            }
+            
+            int rSum=0;
+            for(int k=i+1; k<n; k++){
+                rSum+=a[k];
+            }
+            
+            if(lSum==rSum)return i+1;
+        }
+        return -1;
+    }
+
+//O(N) O(1)
+int equilibriumPoint(long long a[], int n) {
+        
+        if(n==1)return 1;
+        long long lSum=0, rSum=0;
+        
+        for(int i=1; i<n; i++){
+            rSum+=a[i];
+        }
+        //min equi index should be index 1 -> start sub from rSum, add to lSum
+        for(int i=0, j=1; j<n; i++, j++){
+            rSum -= a[j];
+            lSum += a[i];
+            
+            if(lSum == rSum){
+                return (i+1)+1;
+            }
+        }
+        return -1;
+    }
+//We calculate the sum of the whole array except the first element in right_sum,
+//considering it to be the partitioning element.
+//Now, we traverse the array from left to right, subtracting an element from right_sum and
+// adding an element to left_sum. At the point where right_sum equals left_sum, we get the partition.

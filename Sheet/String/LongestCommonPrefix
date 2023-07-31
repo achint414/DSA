@@ -1,0 +1,22 @@
+//O(n * logn + (max string size)) O(1)
+string longestCommonPrefix(vector<string> &arr, int n)
+{
+    if(n==0)return "";
+
+    sort(arr.begin(), arr.end());
+    //sorted lexicographically
+    
+    //compare the first and last string
+    string a=arr[0];
+    string b=arr[n-1];
+    string ans="";
+
+    for(int i=0; i<a.length(); i++){
+
+      if (a[i] != b[i]) {
+        break;
+      }
+      ans+=a[i];
+    }
+    return ans;
+}
