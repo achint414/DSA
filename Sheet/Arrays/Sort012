@@ -28,3 +28,6 @@ public:
 //arr[0….low-1] contains 0. [Extreme left part]
 //arr[low….mid-1] contains 1.
 //arr[high+1….n-1] contains 2. [Extreme right part], n = size of the array
+
+// 0   low-1   low   mid-1   mid     high   high+1   n-1
+// 0 0 0 0 0    1 1 1 1 1      unsorted     2 2 2 2 2 2     
