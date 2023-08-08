@@ -1,0 +1,18 @@
+class Solution{
+public:
+    void reverseInGroups(vector<long long>& arr, int n, int k){
+        
+        long long i=0, j=k;
+        
+        while(j<n){
+            reverse(arr.begin() + i, arr.begin() + j);
+            i+=k;
+            j+=k;
+        }
+        
+        //for reversing rem elements(<k)
+        reverse(arr.begin() + i, arr.begin() + n);
+    }
+};
+
+//O(N) O(1)
