@@ -1,0 +1,9 @@
+//usign 2 ptr
+int remove_duplicate(int a[],int n){
+        
+        if(n==0 || n==1)return n;
+            
+        int i=0;
+        
+       return i+1;
+}

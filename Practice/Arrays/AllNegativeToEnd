@@ -1,0 +1,16 @@
+void segregateElements(int arr[],int n)
+    {
+        int low=0, high=n-1;
+        
+        while(index<high){
+            
+            if(arr[index]<0){
+                swap(arr[index],arr[high]);
+                high--;
+            }
+            else{
+                index++;
+            }
+        }
+        
+    }

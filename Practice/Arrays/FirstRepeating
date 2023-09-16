@@ -1,0 +1,27 @@
+//brute O(N^2)
+int firstRepeated(int arr[], int n) {
+        
+        for(int i=0; i<n; i++){
+            
+            for(int j=i+1; j<n; j++){
+                if(arr[j]==arr[i])return i+1;
+            }
+        }
+        return -1;
+}
+
+//map O(N) O(N)
+int firstRepeated(int a[], int n) {
+        
+        unordered_map<int, int>hash;
+        
+        for(int i=0; i<n; ++i){
+            hash[a[i]]++;
+        }
+        
+        for(int i=0; i<n; i++){
+            if(hash[a[i]] > 1)return i+1;
+        }
+        return -1;
+}
+

@@ -20,6 +20,7 @@ public:
 //Optimal
 
   string read(int n, vector<int> book, int target) {
+    
   sort(book.begin(), book.end());
   int left=0; int right=n-1;                           //2pointer approach(greedy)
   while(left<right){

@@ -20,4 +20,4 @@ int main()
 }
 
 //triplet sum
-//i=0 , j-i+1 , k=j+1
+//i=0 , j=i+1 , k=j+1

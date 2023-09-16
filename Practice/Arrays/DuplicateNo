@@ -1,0 +1,14 @@
+//brute
+//sort, check if a[i+1]==a[i]
+
+//
+int findDuplicate(vector<int> &nums, int n){
+	
+	int ans;
+        while(nums[0]!=nums[nums[0]]){
+            swap(nums[0], nums[nums[0]]);
+        }
+        return nums[0];
+}
+
+//using B.S.
