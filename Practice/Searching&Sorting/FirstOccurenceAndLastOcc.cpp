@@ -26,8 +26,7 @@ class Solution
                 s=mid+1;
             }
         
-        mid= s + (e-s)/2;
-        
+            mid= s + (e-s)/2;
         }
         
         s=0, e=arr.size()-1;
@@ -45,13 +44,11 @@ class Solution
                 e=mid-1;
             }
             
-            
             else if(arr[mid] < x){
                 s=mid+1;
             }
         
-        mid= s + (e-s)/2;
-        
+            mid= s + (e-s)/2;    
         }
         
         return ans;
