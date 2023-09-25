@@ -1,3 +1,9 @@
+//4 types of question
+//classical
+//search space
+//predicate functions
+//index-based
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -34,3 +40,4 @@ int main(){
     cout<<"index of 20 is: "<<index;
     return 0;
 }
+

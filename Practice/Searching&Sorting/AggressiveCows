@@ -1,0 +1,42 @@
+bool isPossible(vector<int>&stalls, int k, int mid){
+        //can we place k cows, with atleast mid distance b/w cows        
+        
+        int c = 1;
+        int pos = stalls[0];
+        
+        for(int i=1; i<stalls.size(); i++){
+            
+            if(stalls[i] - pos >= mid){
+                
+                c++;
+                pos = stalls[i];//one more cow has been placed
+            }
+            
+            if(c == k)return true;
+        }
+        return false;
+    }
+
+
+    int solve(int n, int k, vector<int> &stalls) {
+    
+        sort(stalls.begin(), stalls.end());//putting stalls distance on num line
+        
+        int s = 0;
+        int e = stalls[n-1] - stalls[0];   
+        int ans = -1;
+        
+        while(s <= e){
+            
+            int mid = s + (e-s) / 2;
+            
+            if(isPossible(stalls, k, mid)) {
+                ans = mid;
+                s = mid+1;
+            }
+            else{
+                e = mid-1;
+            }
+        }
+        return ans;       
+    }

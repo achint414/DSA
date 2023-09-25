@@ -28,3 +28,20 @@
        // if(ans==0)return n-2+1;
         return ans;
     }
+
+
+//
+    int missingNumber(vector<int>& array, int n) {
+        // Your code goes here
+        int totalSum=0;
+        totalSum=n*(n+1)/2;
+        
+        int arrSum=0;
+        for(int i=0; i<n-1; i++){
+            arrSum+=array[i];
+        }
+        
+        return totalSum-arrSum;
+}
+
+//using XOR of all array elements and [1,n] range elements

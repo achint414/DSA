@@ -1,0 +1,55 @@
+//Brute force - to find all the possible permutations and find min - TC higher - takes too much time TLE
+
+//Better
+//search space [0 - sum of pages], try to allocate each student at most -> mid
+//predicate func
+bool isPossibleSol(int A[], int N, int M, int mid){
+
+        //try to allocate each student at most -> mid
+        
+        int pageSum=0;
+        int allocateCount=1;
+        
+        for(int i=0; i<N; i++){
+        
+            if(A[i] > mid){
+                return false;
+            }
+            else if(pageSum + A[i] > mid){
+                allocateCount++;
+                pageSum=A[i];
+                
+                if(allocateCount > M)return false;
+            }
+            else{
+                pageSum+=A[i];
+            }
+            
+        }
+        return true;
+    }   
+    
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) 
+    {
+        
+        if(M > N)return -1;
+        int s=0;
+        int e=accumulate(A, A+N, 0); //or by using loop - accumulate can give error in some test cases
+        int ans=-1;
+        
+        while(s <= e){
+            
+            int mid=s+(e-s)/2; // (e-s) >> 1 -> (e-s)/2^1
+            
+            if(isPossibleSol(A, N, M, mid)){
+                ans=mid;
+                e=mid-1;
+            }
+            else{
+                s=mid+1;
+            }
+                
+        }
+        return ans;
+    }

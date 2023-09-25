@@ -1,3 +1,5 @@
+//search space (0-x)
+
 long long int floorSqrt(long long int x) 
     {
         long long s=0;
@@ -33,6 +35,6 @@ long long int floorSqrt(long long int x)
         //     }
         //     step=step/10;
         // }
-        
+
         return ans;
     }

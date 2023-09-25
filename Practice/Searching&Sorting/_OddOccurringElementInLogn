@@ -1,0 +1,38 @@
+//we can use XOR even will get cancelled - O(n)
+
+//even-odd pair at left, odd-even pair at right
+//ans will be at the even index
+
+    int s=0;
+    int e=size-1;
+    int mid=s+(e-s)/2;
+
+    while(s<=e){
+        
+        if(s==e)return s;
+
+        if(mid % 2 == 0){
+
+            if(mid+1 < n && a[mid] == a[mid+1]){
+                s=mid+2;
+            }
+            else{
+                //can be on the ans or on the right side, will lose ans by mid-1
+                e=mid;
+            }
+        }
+        //if(mid & 1) -> true - odd no.
+        else{ 
+
+            if(mid-1 >= 0 && a[mid] == a[mid-1]){
+                s=mid+1;
+            }
+            else{
+                e=mid-1;
+            }
+        }
+
+        mid=s+(e-s)/2;
+    }
+
+

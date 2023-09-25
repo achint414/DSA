@@ -5,13 +5,13 @@ int findPeakElement(vector<int>& nums) {
 
         while(s<e){
             if(nums[mid] < nums[mid+1] ){
-                //on A - peak in roght
+                //on A - peak in right
                 s=mid+1;
             }
             else{
                 //on B or peak
-                e=mid; 
-            }
+                e=mid;  
+            }  
             mid=s+(e-s)/2;
         }
         return s;

@@ -1,3 +1,6 @@
+//brute - extra space
+
+//using modulus % - O(n)
 void rotate(vector<int>& nums, int k) {
         
         int n=nums.size();
@@ -9,3 +12,23 @@ void rotate(vector<int>& nums, int k) {
         }
     nums=ans;
 }
+
+//reversal method - O(n) - impt(if % not allowed)
+    //rev[0, n-1]
+    //rev[0, k-1]
+    //rev[k, n-1]
+
+void rotate(vector<int>& nums, int k) {
+
+        k=k%nums.size();
+        
+        //rev[0, n-1]
+        reverse(nums.begin(), nums.end());
+        //rev[0, k-1]
+        reverse(nums.begin(), nums.begin()+k);
+        //rev[k, n-1]
+        reverse(nums.begin()+k, nums.end());
+    }
+
+
+

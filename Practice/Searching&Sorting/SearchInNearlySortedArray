@@ -8,10 +8,10 @@ while(start<=end){
     if(arr[mid]==key){
         return mid;
     }
-    if(mid-1>=0 && arr[mid-1]==key){
+    if(mid-1 >= s && arr[mid-1]==key){
         return mid-1;
     }
-    if(mid+1<size && arr[mid+1]==key){
+    if(mid+1 <= e && arr[mid+1]==key){
         return mid+1;
     }
     
