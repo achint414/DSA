@@ -1,0 +1,11 @@
+
+int index = 0;
+while(ch[index] != '\0'){
+    
+    char currChar = ch[index];
+    //check if lowercase, then convert to uppercase
+    if(currChar >= 'a' && currChar <= 'z'){
+        ch[index] = currChar - 'a' + 'A';
+    }
+    index++;
+}

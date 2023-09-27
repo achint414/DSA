@@ -1,0 +1,46 @@
+//brute TLE  O(n^2)
+//first subarray [0 - (k-1)] next will be [0+1 - (k-1+1)] ...
+double findMaxAverage(vector<int>& nums, int k) {
+        
+        int maxSum = INT_MIN;
+        int i = 0, j = k-1;
+        
+        while(j < nums.size()){
+
+            int sum = 0;
+            for(int x=i; x<=j; x++){
+                sum += nums[x];
+            }
+            
+            maxSum = max(maxSum, sum);
+            i++, j++;
+        }
+        double maxAvg = maxSum / (double)k;
+        return maxAvg;
+}
+
+//optimised - sliding window  O(n)
+
+    double findMaxAverage(vector<int>& nums, int k) {
+        
+        int maxSum = INT_MIN;
+        //first subarray of k elements, first window sum[0 - (k-1)] 
+        int i = 0, j = k-1;
+        int sum = 0;
+        
+        for(int x=i; x<=j; x++){
+            sum += nums[x];
+        }
+        maxSum = sum;
+
+        j++;
+        while(j < nums.size()){//check if next windows possible
+            //in next window add j index & sub i index, increement i, j - sliding the window forward
+            sum -= nums[i++];
+            sum += nums[j++];
+            maxSum = max(maxSum, sum);
+        }
+
+        double maxAvg = maxSum / (double)k;
+        return maxAvg;
+    }
