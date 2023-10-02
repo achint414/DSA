@@ -1,6 +1,6 @@
 //using priority queue O(nlogn)
 
-//using greedy approach  O()
+//using greedy approach  O(n) + O(26) + O(n/2) + O(26 * n) -> O(n)
 
 //count hash
 //find most occurent char and place it in one go (with gap of 1 index)
@@ -50,5 +50,6 @@ string reorganizeString(string s) {
                 index += 2;
             }
         }
+
     return s;
     }   

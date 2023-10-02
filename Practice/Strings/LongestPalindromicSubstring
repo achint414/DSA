@@ -1,0 +1,35 @@
+//brute O(n^3)
+//find all substring, check for longest substring which is a palindrome
+
+bool isPalindromic(string &s, int i, int j){
+
+        while(i <= j){
+            if(s[i] != s[j])return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    string longestPalindrome(string s) {
+        
+        string ans="";
+
+        //find all substring
+        for(int i=0; i<s.size(); i++){
+
+            for(int j=i; j<s.size(); j++){
+
+                //check if substring is palindromic
+                if(isPalindromic(s, i, j)){
+                    
+                    //compare size of the obtained string
+                    string t = s.substr(i, j - i + 1);
+                    ans = t.size() > ans.size() ? t : ans;
+                }
+            }
+        }
+        return ans;
+    }
+
+//O(n^2) using D.P.

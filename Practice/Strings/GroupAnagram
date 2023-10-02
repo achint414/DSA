@@ -1,0 +1,27 @@
+//O(n klogk) O(nk) + map size
+//n=strs.length(), k=len of largest string
+
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        
+        vector<vector<string>>ans;
+        map<string, vector<string>>mp;
+
+        //push the sorted string ans its anagram 
+        for(auto str: strs){
+            string s = str;
+            sort(s.begin(), s.end());
+            mp[s].push_back(str);
+        }
+
+        // for(auto it: mp){
+        //     ans.push_back(it.second);
+        // }
+        for(auto it=mp.begin(); it!=mp.end(); it++){
+            ans.push_back(it->second);
+        }
+
+    return ans;
+}
+
+//without sort O(nk) O(nk)
+//CH

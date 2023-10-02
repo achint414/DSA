@@ -1,0 +1,17 @@
+int strStr(string haystack, string needle) {
+        
+        int n = haystack.length();
+        int m = needle.length();
+        //outer loop - haystack
+        for(int i=0; i<=(n - m); i++){
+            //inner loop - needle
+            for(int j=0; j<m; j++){
+
+                if(needle[j] != haystack[i + j])break; //i - fixed
+
+                if(j == m-1)return i;
+            }
+        }
+        return -1;
+    }
+//O((n-m+1) * m) -> O(mn), n*m > m^2
