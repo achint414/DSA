@@ -1,0 +1,27 @@
+string decodeMessage(string key, string message) {
+        
+        //create mapping
+        char start = 'a';
+        char map[256] = {0};
+
+        for(auto ch: key){
+
+            if(ch != ' ' && map[ch] == 0){
+                map[ch] = start;
+                start++;
+            }
+        }
+        //use mapping
+        string ans;
+        for(auto ch: message){
+            
+            if(ch == ' '){
+                ans.push_back(' ');
+            }
+            else{
+                char decodedChar = map[ch];
+                ans.push_back(decodedChar);
+            }
+        }
+        return ans;
+    }

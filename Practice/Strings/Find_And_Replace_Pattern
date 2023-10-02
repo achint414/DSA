@@ -1,0 +1,43 @@
+//normalise all the words and pattern into similar format so we can compare them
+
+//createMapping() normalises all the words and pattern into a similar format 
+    void createMapping(string &str){
+        //find mapping
+        char start = 'a';
+        char map[256] = {0};
+
+        for(auto ch: str){
+            
+            if(map[ch] == 0){
+                map[ch] = start;
+                start++;
+            }
+        }
+
+        //update the pattern
+        for(int i=0; i<str.length(); i++){
+            str[i] = map[str[i]];
+        }
+        //In foreach, can't change value of the iteration variable - use for loop
+        // for(auto ch: str){
+        //     char x = ch;
+        //     ch = map[x];
+        // }
+    }
+
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+    
+        vector<string>ans;
+        //firstly normalise the pattern
+        createMapping(pattern);
+
+        //normalise all the words
+        for(string s: words){
+
+            string temp = s;
+            createMapping(temp);
+
+            if(temp == pattern)ans.push_back(s);
+        }
+    return ans;
+    }

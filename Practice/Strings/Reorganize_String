@@ -1,0 +1,54 @@
+//using priority queue O(nlogn)
+
+//using greedy approach  O()
+
+//count hash
+//find most occurent char and place it in one go (with gap of 1 index)
+//if not placed return empty
+//fill the rest char with 1 index gap
+
+string reorganizeString(string s) {
+        
+        //can make smaller hash as s consists of lowercase - indexing acc to 26,  map -> 0-'a', 25-'z'
+        int hash[26]={0};
+        for(auto ch: s){
+            hash[ch - 'a']++;
+        }
+
+        //find the most frequent char
+        int maxFreq = INT_MIN;
+        char maxFreqChar;
+        for(int i=0; i<26; i++){
+            if(hash[i] > maxFreq){
+                maxFreq = hash[i];
+                maxFreqChar = i + 'a';
+            }
+        }
+
+        //place the most frequent char - it should be placed in one go
+        int index = 0;
+        while(index < s.size() && maxFreq > 0){
+            s[index] = maxFreqChar;
+            maxFreq--;
+            index += 2;
+        }
+
+        //it not placed in one go - return empty
+        if(maxFreq != 0)return "";
+        //else
+        //most frequent already placed
+        hash[maxFreqChar - 'a'] = 0;
+
+        //place the rest of the char at their position
+        for(int i=0; i<26; i++){
+
+            while(hash[i] > 0){
+
+                index = index >= s.size() ? 1 : index;//condition if insert index goes out of bound
+                s[index] = i + 'a';
+                hash[i]--;
+                index += 2;
+            }
+        }
+    return s;
+    }   

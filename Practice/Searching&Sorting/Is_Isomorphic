@@ -1,0 +1,29 @@
+void mapping(string &str){
+        char start = 'a';
+        char map[256]={0};
+
+        for(auto ch: str){
+
+            if(map[ch]==0){
+                map[ch]=start;
+                start++;
+            }
+        }
+
+        for(int i=0; i<str.length(); i++){
+            str[i]=map[str[i]];
+        }
+    }
+
+    bool isIsomorphic(string s, string t) {
+        
+        if(t.length() != s.length()){
+            return false;
+        }
+
+        mapping(s);
+        mapping(t);
+
+        if(s.compare(t) == 0)return true;
+        else return false;
+    }
