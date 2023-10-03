@@ -1,0 +1,18 @@
+string longestCommonPrefix(vector<string>& strs) {
+        
+        sort(strs.begin(), strs.end());
+        //sorted lexicographically(as in dictionary)
+    
+        //compare the first and last string(as they will have the largest common part)
+        string s=strs[0];
+        string e=strs[strs.size()-1];
+
+        int len = min(s.length(), e.length());
+        string ans;
+
+        for(int i=0; i<len; i++){
+            if(s[i] != e[i])break;
+            else ans+=s[i];
+        }
+        return ans;
+    }

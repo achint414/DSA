@@ -1,0 +1,27 @@
+//brute - find all pnc and pick the largest
+
+//using custom comparator
+ static bool mycomp(string a, string b){
+        string s1 = a+b;
+        string s2 = b+a;
+        return s1 > s2;
+    }
+
+    string largestNumber(vector<int>& nums) {
+        
+        vector<string>snums;
+        for(auto num: nums){
+
+            snums.push_back( to_string(num) );
+        }
+        //30 > 3 lexicographically
+        sort(snums.begin(), snums.end(), mycomp);
+        if(snums[0] == "0")return "0";
+    
+        string ans="";
+        for(auto str:snums){
+            ans+=str;
+        }
+        
+        return ans;
+    }

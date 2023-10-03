@@ -1,0 +1,50 @@
+//
+    void mapping(string &str){
+        
+        char start = 'a';
+        char map[256]={0};
+
+        for(auto ch: str){
+            if(map[ch]==0){
+                map[ch]=start;
+                start++;
+            }
+        }
+
+        for(int i=0; i<str.length(); i++){
+            str[i]=map[str[i]];
+        }
+    }
+
+    bool isIsomorphic(string s, string t) {
+        
+        // if(t.length() != s.length()){
+        //     return false;
+        // }
+
+        mapping(s);
+        mapping(t);
+        if(s.compare(t) == 0)return true;
+        else return false;
+    }
+
+//
+bool isIsomorphic(string s, string t) {
+        
+        char map[256] = {0}; //mapping each char of s with t
+        bool tCharsMap[256] = {0}; //checks if t[i] char is already mapped with s[i] to prevent double mapping of t charx
+
+        for(int i=0; i<s.length(); i++){
+
+            if(map[s[i]] == 0 && tCharsMap[t[i]] == 0){
+                map[s[i]] = t[i];
+                tCharsMap[t[i]] = true;
+            }
+        }
+
+        for(int i=0; i<s.length(); i++){
+
+            if(map[s[i]] != t[i])return false;
+        }
+        return true;
+    }
