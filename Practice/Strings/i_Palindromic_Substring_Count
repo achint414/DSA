@@ -13,9 +13,9 @@ int expand(string s, int i, int j){
         int totalCount = 0;
         //taking every position as center
         for(int center = 0; center < s.length(); center++){   
-            // odd - i=j=center
+            // odd -> i = j = center
             int oddAns = expand(s, center, center);
-            // even - i=center, j=center+1
+            // even -> i = center, j = center+1
             int evenAns = expand(s, center, center + 1); 
             totalCount = totalCount + oddAns + evenAns;
         }

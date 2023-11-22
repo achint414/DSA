@@ -1,0 +1,36 @@
+string convert(string s, int nRows) {
+        
+        if(nRows == 1)return s;
+        
+        vector<string>zigzag(nRows);
+        
+        int i = 0, row = 0; 
+        bool direction = 1; // 1->initially T->B  //to change insertion direction alternatively T->B & B->T
+        
+        while(true){
+            
+            //T->B
+            if(direction){
+                while(row < nRows && i < s.size()){
+                    zigzag[row++].push_back(s[i++]);
+                }
+                row = nRows - 2;
+            }
+            //B->T
+            else{
+                while(row >= 0 && i < s.size()){
+                    zigzag[row--].push_back(s[i++]);
+                }
+                row = 1;
+            }
+
+            if(i >= s.size())break;
+            direction = !direction;
+        }
+        
+        string ans = "";
+        for(auto s: zigzag){
+            ans += s;
+        }
+        return ans;
+    }
